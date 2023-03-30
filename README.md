@@ -2,6 +2,10 @@
 
 ![image](https://user-images.githubusercontent.com/125073452/228700569-eeda2d9e-4d0b-4a3a-bad5-39d6e473afff.png)
 
+## User Flow
+![image](https://user-images.githubusercontent.com/125073452/228705117-76a34d88-3648-4cdc-9679-4c0fab361dc7.png)
+
+
 ## Project Description
 This application will allow a user to search for a location's forecast, the results will include a suggestion of the top brewerys in the area to visit. It will prioritize the type of brewery based on what the weather is.
 
