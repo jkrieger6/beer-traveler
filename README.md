@@ -7,10 +7,15 @@ As a traveler I want a web application that can help me find beers based off of 
 
 ## Acceptance Criteria
 WHEN I want to view the weather for a particular city
+
 THEN I can search any city and the current weather will appear
+
 WHEN I am presented with the weather 
+
 THEN I can also seee a list of the top breweries for that city
+
 WHEN I click on a certain brewery 
+
 THEN that I am given details about that particular brewery
 
 This application will allow a user to search for a location's forecast along with a suggestion of the top brewerys in the area. It will prioritize 
