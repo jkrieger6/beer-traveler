@@ -1,27 +1,23 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Beer Traveler!</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
-  </head>
-  <body>
-  <section class="section">
-    <div class="container">
-      <h1 class="title">
-        Beer Traveler
-      </h1>
-      <input class="input" type="text" placeholder="City Search...">
-      <button class="button is-primary is-outlined">Search</button>
-    </div>
-    <div class="card column is-half">
-      <div class="card-content">
-        <div class="content">
-          Map of Breweries
-        </div>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tailwind Search Bar Example</title>
+  <!-- Import Tailwind CSS -->
+  <link href="https://unpkg.com/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100">
+  <div class="container mx-auto mt-10 flex flex-col items-center">
+    <h1 class="text-4xl font-bold mb-4">Beer Traveler</h1>
+    <form class="w-full max-w-sm">
+      <div class="flex items-center border-b border-b-2 border-gray-500 py-2">
+        <input class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none" type="text" placeholder="City Search...">
+        <button class="flex-shrink-0 bg-gray-500 hover:bg-gray-700 border-gray-500 hover:border-gray-700 text-sm border-4 text-white py-1 px-2 rounded" type="button">
+          Go!
+        </button>
       </div>
-    </div>
-  </section>
-  </body>
+    </form>
+  </div>
+</body>
 </html>
