@@ -15,13 +15,13 @@ THEN I can search any city and the current weather will appear
 
 WHEN I am presented with the weather 
 
-THEN I can also seee a list of the top breweries for that city
+THEN I can also see a list of the top breweries for that city
 
 WHEN I click on a certain brewery 
 
 THEN that I am given details about that particular brewery
 
-##APIs
+## APIs
 
 
 
