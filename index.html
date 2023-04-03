@@ -13,8 +13,8 @@
     <h1 class="text-4xl font-bold mb-4">Beer Traveler</h1>
     <form class="w-full max-w-sm">
       <div class="flex items-center border-b border-b-2 border-gray-500 py-2">
-        <input class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none" type="text" placeholder="City Search...">
-        <button class="flex-shrink-0 bg-gray-500 hover:bg-gray-700 border-gray-500 hover:border-gray-700 text-sm border-4 text-white py-1 px-2 rounded" type="button">
+        <input id= "searchCriteria" class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none" type="text" placeholder="City Search...">
+        <button id="searchBtn" class="flex-shrink-0 bg-gray-500 hover:bg-gray-700 border-gray-500 hover:border-gray-700 text-sm border-4 text-white py-1 px-2 rounded" type="button">
           Go!
         </button>
       </div>
@@ -23,7 +23,7 @@
     <!-- Card 1 -->
     <div class="w-full bg-white rounded-lg shadow-lg my-4 p-4" style="height: 200px;"><h1>Your City Here!</h1></div>
 
-    <!-- Card 2 -->
+    <!-- Card 2 & 3-->
     <div class="flex flex-row -mx-4">
       <div class="w-full px-4">
         <div class="bg-white rounded-lg shadow-lg my-4 p-4" style="height: 600px;"><h1>What's the Weather?</h1></div>
@@ -34,4 +34,8 @@
     </div>
   </div>
 </body>
+
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="assets/js/script.js"></script>
 </html>
