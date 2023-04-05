@@ -15,3 +15,19 @@ function searchFunction(userInput) {
     // api search function goes here
     console.log("Your city is: " + userInput);
 }
+
+let map;
+
+async function initMap() {
+  //@ts-ignore
+  const { Map } = await google.maps.importLibrary("map");
+
+  console.log("Map", Map);
+
+  map = new Map(document.getElementById("myCity"), {
+    center: { lat: -34.397, lng: 150.644 },
+    zoom: 8,
+  });
+}
+
+initMap();

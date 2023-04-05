@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Beer Traveler</title>
+  <script src="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.15.1/build/ol.js"></script>
   <!-- Import Tailwind CSS -->
   <link href="https://unpkg.com/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
   <link rel="stylesheet" href='assets/css/style.css'>
@@ -21,8 +22,7 @@
     </form>
 
     <!-- Card 1 -->
-    <div id="myCity" class="w-full bg-white rounded-lg shadow-lg my-4 p-4" style="height: 200px;"><h1>Your City Here!</h1></div>
-
+    <div id="myCity" class="w-full bg-white rounded-lg shadow-lg my-4 p-4" style="height: 200px;"></div>
     <!-- Card 2 & 3-->
     <div class="flex flex-row -mx-4">
       <div class="w-full px-4">
@@ -33,8 +33,21 @@
       </div>
     </div>
   </div>
+    <script type="text/javascript">
+      var map = new ol.Map({
+        target: 'myCity',
+        layers: [
+          new ol.layer.Tile({
+            source: new ol.source.OSM()
+          })
+        ],
+        view: new ol.View({
+          center: ol.proj.fromLonLat([37.41, 8.82]),
+          zoom: 4
+        })
+      });
+    </script>
 </body>
-
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script src="assets/js/script.js"></script>
