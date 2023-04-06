@@ -99,3 +99,43 @@ function getWeatherData(lat, lon) {
         getForecast(data.list);
     })
 }
+var searchEL = document.querySelector("#searchBtn");
+
+searchEL.addEventListener("click", searchBreweries);
+
+//search function for breweries
+function searchBreweries() {
+    userInputEl = document.querySelector("#searchCriteria").value;
+    const city = document.getElementById("myCity").value;
+    const endpoint = "https://api.openbrewerydb.org/breweries?by_city="+userInputEl+"&per_page=5";
+    fetch(endpoint)
+      .then(response => response.json())
+      .then(breweries => {
+        const breweriesList = document.getElementById("beerGlass");
+        for (const brewery of breweries) {
+          console.log(brewery);
+        }
+      })
+      .catch(error => console.error(error));
+
+    }
+    
+function brewInfo(breweryObj) {
+
+    var brewName = breweryObj.name;
+    var brewAddress = breweryObj.address_1;
+    var brewType = breweryObj.brewery_type;
+    var brewLink = breweryObj.website_url;
+
+    
+    var breweryEl =$("#beerGlass");
+    breweryEl.append($("<div>").text(brewName));
+    breweryEl.append($("<div>").text(brewAddress));
+    breweryEl.append($("<div>").text(brewType));
+    breweryEl.append($("<a>").attr("href=", brewLink));
+        
+        //$("#beerGlass").addclass("list-group");
+        //$("#beerGlass").append($("<ol>"));
+}
+
+
