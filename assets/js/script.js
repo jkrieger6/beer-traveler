@@ -16,7 +16,7 @@ $("#searchBtn").on("click", addResult);
 function addResult(event) {
     event.preventDefault();
     var cityInput = userInputEl.val();
-    $("#current-weather").attr("style", "display:inline-block");
+    // $("#current-weather").attr("style", "display:inline-block");
     searchCity(cityInput);
   }
 
@@ -54,10 +54,34 @@ function currentWeather(weatherObj) {
   cityEl.append($("<img>").attr("src", imgSrc));
 }
 
+function getForecast(arrayOfWeatherObjs) {
+    var list = $("#weatherPane");
+    console.log(arrayOfWeatherObjs);
+    for (let i = 0; i < arrayOfWeatherObjs.length; i++) {
+        var obj = arrayOfWeatherObjs[i];
+        var dayTimeDisplay = obj.dt_txt;
+        if(obj.dt_txt.includes("12:00:00")) {
+            var forecastListItems = $("<li>");
+            var forecastTempData = Math.floor(obj.main.temp);
+            var forecastWindSpeedData = Math.floor(obj.wind.speed);
+            var forecastCoonditions = obj.weather[0].description;
+            var forecastWeatherIcon = obj.weather[0].icon;
+            imgSrc = "https://openweathermap.org/img/wn/" + forecastWeatherIcon + ".png";
+            forecastListItems.append($("<div>").text(dayTimeDisplay));
+            forecastListItems.append($("<div>").text(" Temp: " + forecastTempData + "F"));
+            forecastListItems.append($("<div>").text(" Wind Speed: " + forecastWindSpeedData + "mph"));
+            forecastListItems.append($("<div>").text(" Condtions: " + forecastCoonditions));
+            forecastListItems.append($("<img>").attr("src", imgSrc));
+            list.append(forecastListItems);
+        }
+    }
+}
+
 function getWeatherData(lat, lon) {
     // $("#weatherPane").empty();
     $("#weatherPane").addClass("list-group");
     $("#weatherPane").append($("<ol>"));
+    $("#weatherPane").attr("style", "display:inline-block");
     
     var weatherUrl = "https://api.openweathermap.org/data/2.5/forecast?lat=" +
     lat +
@@ -72,6 +96,6 @@ function getWeatherData(lat, lon) {
     })
     .then(function (data) {
       currentWeather(data.list[0]);
-        // renderForecast(data.list);
+        getForecast(data.list);
     })
 }
