@@ -14,11 +14,6 @@ searchBtnEl.addEventListener("keypress", function(event) {
   }
 });
 
-/*searchBtnEl.addEventListener("keydown", function(event) {
-  if (event.key === "Enter") {
-    
-  }
-});*/
 
 function addResult(event) {
   event.preventDefault();
