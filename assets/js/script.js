@@ -131,7 +131,7 @@ function searchBreweries() {
   const endpoint =
     "https://api.openbrewerydb.org/breweries?by_city=" +
     userInputEl +
-    "&per_page=8";
+    "&per_page=5";
   fetch(endpoint)
     .then((response) => response.json())
     .then(data => {
