@@ -4,6 +4,17 @@ var APIKey = "5b2b7b9a047f3cbe2fa1edd5d1203608";
 var searchBtnEl = document.querySelector("#searchBtn");
 searchBtnEl.addEventListener("click", addResult);
 
+searchBtnEl.addEventListener("keypress", function(event) {
+  // If the user presses the "Enter" key on the keyboard
+  if (event.key === "Enter") {
+    // Cancel the default action, if needed
+    event.preventDefault();
+    // Trigger the button element with a click
+    document.getElementById("searchBtn").click();
+  }
+});
+
+
 function addResult(event) {
   event.preventDefault();
   let userInputEl = document.querySelector("#searchCriteria");
@@ -123,29 +134,28 @@ function searchBreweries() {
     "&per_page=5";
   fetch(endpoint)
     .then((response) => response.json())
-    .then((breweries) => {
-      //const breweriesList = document.getElementById("beerGlass");
-      for (const brewery of breweries) {
-        console.log(brewery);
-      }
+    .then(data => {
+      // Loop through list of breweries and display information
+      data.forEach(brewery => {
+        const breweryElement = document.createElement("div");
+        breweryElement.classList.add("brewery");
+
+        const breweryName = document.createElement("h2");
+        breweryName.textContent = brewery.name;
+        breweryElement.appendChild(breweryName);
+
+        const breweryType = document.createElement("p");
+        breweryType.textContent = brewery.brewery_type;
+        breweryElement.appendChild(breweryType);
+
+        const breweryAddress = document.createElement("p");
+        breweryAddress.textContent = `${brewery.street}, ${brewery.city}, ${brewery.state}, ${brewery.postal_code}`;
+        breweryElement.appendChild(breweryAddress);
+
+        document.querySelector("#beerGlass").appendChild(breweryElement);
+      });
     })
-    .catch((error) => console.error(error));
-}
-
-function brewInfo(breweryObj) {
-  var brewName = breweryObj.name;
-  var brewAddress = breweryObj.address_1;
-  var brewType = breweryObj.brewery_type;
-  var brewLink = breweryObj.website_url;
-
-  var breweryEl = $("#beerGlass");
-  breweryEl.append($("<div>").text(brewName));
-  breweryEl.append($("<div>").text(brewAddress));
-  breweryEl.append($("<div>").text(brewType));
-  breweryEl.append($("<a>").attr("href=", brewLink));
-
-  //$("#beerGlass").addclass("list-group");
-  //$("#beerGlass").append($("<ol>"));
+    .catch(error => console.error(error));
 }
 
 // define the OpenLayers map object
