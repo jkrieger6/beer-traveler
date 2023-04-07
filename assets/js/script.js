@@ -1,8 +1,6 @@
 var userInputEl = document.querySelector('#searchCriteria');
 var APIKey = "5b2b7b9a047f3cbe2fa1edd5d1203608";
 
-var beerApi = 'https://api.openbrewerydb.org/v1/breweries?by_city=%27userInput%27&per_page=5'
-
 var searchBtnEl = document.querySelector("#searchBtn");
 searchBtnEl.addEventListener("click", addResult);
 
@@ -17,13 +15,18 @@ searchBtnEl.addEventListener("click", addResult);
 function addResult(event) {
     let userInputEl = document.querySelector('#searchCriteria');
     event.preventDefault();
+    let userInputEl = document.querySelector('#searchCriteria');
     var cityInput = userInputEl.value;
+    console.log(cityInput);
+
     // $("#current-weather").attr("style", "display:inline-block");
     console.log(cityInput);
     searchCity(cityInput);
   }
 
+  // function to get lat, lon of city
 function searchCity(userInput) {
+  $("#weatherPane").empty();
     // api search function goes here
     var geoUrl = "https://api.openweathermap.org/geo/1.0/direct?q=" +
     userInput +
@@ -44,6 +47,7 @@ function searchCity(userInput) {
     console.log("Your city is: " + userInput);
 }
 
+// function to get current weather for searched city
 function currentWeather(weatherObj) {
     // var dateTime = weatherObj.dt_txt;
     var tempData = weatherObj.main.temp;
@@ -58,6 +62,7 @@ function currentWeather(weatherObj) {
   cityEl.append($("<img>").attr("src", imgSrc));
 }
 
+// function to get forecasted weather for searched city from earlier called API
 function getForecast(arrayOfWeatherObjs) {
     var list = $("#weatherPane");
     console.log(arrayOfWeatherObjs);
@@ -81,6 +86,7 @@ function getForecast(arrayOfWeatherObjs) {
     }
 }
 
+// calls Open weather API to get weather
 function getWeatherData(lat, lon) {
     $("#weatherPane").addClass("list-group");
     $("#weatherPane").append($("<ol>"));
@@ -109,7 +115,8 @@ searchEL.addEventListener("click", searchBreweries);
 //search function for breweries
 function searchBreweries() {
     userInputEl = document.querySelector("#searchCriteria").value;
-    //const city = document.getElementById("myCity").value;
+    const city = document.getElementById("myCity").value;
+
     const endpoint = "https://api.openbrewerydb.org/breweries?by_city="+userInputEl+"&per_page=5";
     fetch(endpoint)
       .then(response => response.json())
