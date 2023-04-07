@@ -1,9 +1,10 @@
-var userInputEl = $('#searchCriteria');
+var userInputEl = document.querySelector('#searchCriteria');
 var APIKey = "5b2b7b9a047f3cbe2fa1edd5d1203608";
 
 var beerApi = 'https://api.openbrewerydb.org/v1/breweries?by_city=%27userInput%27&per_page=5'
 
-$("#searchBtn").on("click", addResult);
+var searchBtnEl = document.querySelector("#searchBtn");
+searchBtnEl.addEventListener("click", addResult);
 
 // $(document).ready(function(){
 //     $("#searchBtn").click(function (){
@@ -14,9 +15,11 @@ $("#searchBtn").on("click", addResult);
 // });
 
 function addResult(event) {
+    let userInputEl = document.querySelector('#searchCriteria');
     event.preventDefault();
-    var cityInput = userInputEl.val();
+    var cityInput = userInputEl.value;
     // $("#current-weather").attr("style", "display:inline-block");
+    console.log(cityInput);
     searchCity(cityInput);
   }
 
@@ -36,6 +39,7 @@ function searchCity(userInput) {
         var geoLat = cityData.lat;
         var geoLon = cityData.lon;
         getWeatherData(geoLat, geoLon, cityData);
+        setMap(geoLon, geoLat);
     })
     console.log("Your city is: " + userInput);
 }
@@ -78,7 +82,6 @@ function getForecast(arrayOfWeatherObjs) {
 }
 
 function getWeatherData(lat, lon) {
-    // $("#weatherPane").empty();
     $("#weatherPane").addClass("list-group");
     $("#weatherPane").append($("<ol>"));
     $("#weatherPane").attr("style", "display:inline-block");
@@ -106,12 +109,12 @@ searchEL.addEventListener("click", searchBreweries);
 //search function for breweries
 function searchBreweries() {
     userInputEl = document.querySelector("#searchCriteria").value;
-    const city = document.getElementById("myCity").value;
+    //const city = document.getElementById("myCity").value;
     const endpoint = "https://api.openbrewerydb.org/breweries?by_city="+userInputEl+"&per_page=5";
     fetch(endpoint)
       .then(response => response.json())
       .then(breweries => {
-        const breweriesList = document.getElementById("beerGlass");
+        //const breweriesList = document.getElementById("beerGlass");
         for (const brewery of breweries) {
           console.log(brewery);
         }
@@ -138,4 +141,36 @@ function brewInfo(breweryObj) {
         //$("#beerGlass").append($("<ol>"));
 }
 
+// define the OpenLayers map object
+var map = new ol.Map("#myCity");
 
+// define the search box element and add an event listener
+var searchBox = userInputEl.value;
+var searchBtn = document.querySelector("#searchBtn");
+searchBtn.addEventListener("click", function() {
+  var city = searchBox.value;
+  //getCityLatLng(city);
+});
+
+function setMap(lon, lat) {
+  console.log(ol);
+  document.querySelector("#myCity").innerHTML = "";
+  map = new ol.Map({
+    target: 'myCity',
+    layers: [
+      new ol.layer.Tile({
+        source: new ol.source.OSM()
+      })
+    ],
+       view: new ol.View({
+        center: ol.proj.fromLonLat([lon, lat]),
+        zoom: 10
+     })
+  });
+}
+
+function updateMapView(map, lat, lon) {
+  var view = map.getView();
+  view.setCenter([lon, lat]);
+  view.setZoom(12); // adjust the zoom level as needed
+}
