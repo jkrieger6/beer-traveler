@@ -30,7 +30,8 @@ When the user loads the page they will be presented with a search bar and the we
 ![Displays landing page](./assets/images/landingPage.jpeg)
 
 A city is entered by the user into the search bar and when go is clicked or enter is pressed a map, the weather, and a list of breweries will appear:
-![Displays weather, map of city center, and breweries]()
+
+![Displays weather, map of city center, and breweries](./assets/images/dataDisplay.jpeg)
 ## Installation
 
 ## Support
@@ -54,11 +55,14 @@ Open to contributions, please send ideas and suggestions in email format with sc
 
 ## Authors and acknowledgment
 Mike Novachek
-[GitHub]("GitHub Repos")
+[GitHub](https://github.com/BigMikeNova?tab=repositories "GitHub Repos")
+
 Jacob Andrew
-[GitHub]("GitHub Repos")
+[GitHub](https://github.com/jcandrew1219?tab=repositories "GitHub Repos")
+
 Dorian Walker
-[GitHub]("GitHub Repos")
+[GitHub](https://GitHub.com/dorianwalker29?tab=repositories "GitHub Repos")
+
 Jake Krieger
 [GitHub](https://github.com/jkrieger6?tab=repositories "GitHub Repos")
 ## Usage
