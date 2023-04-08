@@ -4,13 +4,13 @@ var APIKey = "5b2b7b9a047f3cbe2fa1edd5d1203608";
 var searchBtnEl = document.querySelector("#searchBtn");
 searchBtnEl.addEventListener("click", addResult);
 
-searchBtnEl.addEventListener("keypress", function(event) {
+userInputEl.addEventListener("keypress", function(event) {
   // If the user presses the "Enter" key on the keyboard
   if (event.key === "Enter") {
     // Cancel the default action, if needed
     event.preventDefault();
-    // Trigger the button element with a click
-    document.getElementById("searchBtn").click();
+    // Trigger the search button element with a click
+    searchBtnEl.click();
   }
 });
 
@@ -137,6 +137,7 @@ function searchBreweries() {
     .then(data => {
       // Loop through list of breweries and display information
       data.forEach(brewery => {
+    
         const breweryElement = document.createElement("div");
         breweryElement.classList.add("brewery");
 
@@ -152,9 +153,16 @@ function searchBreweries() {
         breweryAddress.textContent = `${brewery.street}, ${brewery.city}, ${brewery.state}, ${brewery.postal_code}`;
         breweryElement.appendChild(breweryAddress);
 
+        const breweryWebsite = document.createElement("a");
+          breweryWebsite.href = brewery.website_url;
+          breweryWebsite.target = "_blank";
+          breweryWebsite.textContent = brewery.website_url;
+          breweryElement.appendChild(breweryWebsite);
+
         document.querySelector("#beerGlass").appendChild(breweryElement);
-      });
-    })
+      
+    });
+  })
     .catch(error => console.error(error));
 }
 
