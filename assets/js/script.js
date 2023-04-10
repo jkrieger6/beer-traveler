@@ -53,44 +53,44 @@ function searchCity(userInput) {
 // function to get current weather for searched city
 function currentWeather(weatherObj) {
   // var dateTime = weatherObj.dt_txt;
-  var tempData = weatherObj.main.temp;
-  var windSpeedData = weatherObj.wind.speed;
-  var currentConditionsData = weatherObj.weather[0].description;
-  var weatherIcon = weatherObj.weather[0].icon;
+  var tempData = weatherObj.list[0].main.temp;
+  var windSpeedData = weatherObj.list[0].wind.speed;
+  var currentConditionsData = weatherObj.list[0].weather[0].description;
+  var weatherIcon = weatherObj.list[0].weather[0].icon;
   imgSrc = "https://openweathermap.org/img/wn/" + weatherIcon + ".png";
+  var cityNameData = weatherObj.city.name;
+  var dateTxt = weatherObj.list[0].dt_txt.split(" ");
   var cityEl = $("#weatherPane");
-  cityEl.append($("<div>").text(" Temp: " + tempData + "F"));
-  cityEl.append($("<div>").text(" Wind Speed: " + windSpeedData + "mph"));
-  cityEl.append($("<div>").text(" Conditions: " + currentConditionsData));
+  cityEl.append($("<h2>").text(" Today in " + cityNameData + "(" + dateTxt[0] + ")"));
   cityEl.append($("<img>").attr("src", imgSrc));
+  cityEl.append($("<p>").text(" Temp: " + tempData + "F"));
+  cityEl.append($("<p>").text(" Wind Speed: " + windSpeedData + "mph"));
+  cityEl.append($("<p>").text(" Conditions: " + currentConditionsData));
+
 }
 
 // function to get forecasted weather for searched city from earlier called API
 function getForecast(arrayOfWeatherObjs) {
   var list = $("#weatherPane");
+  list.attr("style", "width: 375px;");
   console.log(arrayOfWeatherObjs);
   for (let i = 0; i < arrayOfWeatherObjs.length; i++) {
     var obj = arrayOfWeatherObjs[i];
-    var dayTimeDisplay = obj.dt_txt;
+    var dayTimeDisplay = obj.dt_txt.split(" ");
     if (obj.dt_txt.includes("12:00:00")) {
       var forecastListItems = $("<li>");
+      forecastListItems.attr("style", "list-style-type: none;");
       var forecastTempData = Math.floor(obj.main.temp);
       var forecastWindSpeedData = Math.floor(obj.wind.speed);
       var forecastCoonditions = obj.weather[0].description;
       var forecastWeatherIcon = obj.weather[0].icon;
-      imgSrc =
-        "https://openweathermap.org/img/wn/" + forecastWeatherIcon + ".png";
-      forecastListItems.append($("<div>").text(dayTimeDisplay));
-      forecastListItems.append(
-        $("<div>").text(" Temp: " + forecastTempData + "F")
-      );
-      forecastListItems.append(
-        $("<div>").text(" Wind Speed: " + forecastWindSpeedData + "mph")
-      );
-      forecastListItems.append(
-        $("<div>").text(" Condtions: " + forecastCoonditions)
-      );
+      imgSrc = "https://openweathermap.org/img/wn/" + forecastWeatherIcon + ".png";
+      forecastListItems.append($("<hr>"));
+      forecastListItems.append($("<h3>").text(dayTimeDisplay[0]));
       forecastListItems.append($("<img>").attr("src", imgSrc));
+      forecastListItems.append($("<p>").text(" Temp: " + forecastTempData + "F"));
+      forecastListItems.append($("<p>").text(" Wind Speed: " + forecastWindSpeedData + "mph"));
+      forecastListItems.append($("<p>").text(" Condtions: " + forecastCoonditions));
       list.append(forecastListItems);
     }
   }
@@ -115,7 +115,7 @@ function getWeatherData(lat, lon) {
       return response.json();
     })
     .then(function (data) {
-      currentWeather(data.list[0]);
+      currentWeather(data);
       getForecast(data.list);
     });
 }
@@ -136,6 +136,8 @@ function searchBreweries() {
     .then((response) => response.json())
     .then(data => {
       // Loop through list of breweries and display information
+      var beerGlass = $("#beerGlass");
+      beerGlass.attr("style", "height: auto; width: 375px;")
       data.forEach(brewery => {
     
         const breweryElement = document.createElement("div");
@@ -146,18 +148,21 @@ function searchBreweries() {
         breweryElement.appendChild(breweryName);
 
         const breweryType = document.createElement("p");
-        breweryType.textContent = brewery.brewery_type;
+        breweryType.textContent = "Type: " + brewery.brewery_type;
         breweryElement.appendChild(breweryType);
 
         const breweryAddress = document.createElement("p");
-        breweryAddress.textContent = `${brewery.street}, ${brewery.city}, ${brewery.state}, ${brewery.postal_code}`;
+        breweryAddress.textContent = "Address: " + `${brewery.street}, ${brewery.city}, ${brewery.state}, ${brewery.postal_code}`;
         breweryElement.appendChild(breweryAddress);
 
         const breweryWebsite = document.createElement("a");
           breweryWebsite.href = brewery.website_url;
           breweryWebsite.target = "_blank";
-          breweryWebsite.textContent = brewery.website_url;
+          breweryWebsite.textContent = "Link to Website: " + brewery.website_url;
           breweryElement.appendChild(breweryWebsite);
+
+          var breweryBreak = document.createElement("hr");
+          breweryElement.appendChild(breweryBreak);
 
         document.querySelector("#beerGlass").appendChild(breweryElement);
       
