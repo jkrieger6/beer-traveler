@@ -26,45 +26,35 @@ WHEN I click on a certain brewery
 THEN that I am given details about that particular brewery
 
 ## Visuals
-When the user loads the page they will be presented with a search bar and the weather and breweries list will be hidden:
-![Displays landing page](./assets/images/landingPage.jpeg)
+* When the user loads the page they will be presented with a search bar and the weather and breweries list will be hidden:
 
-A city is entered by the user into the search bar and when go is clicked or enter is pressed a map, the weather, and a list of breweries will appear:
+![Displays landing page](./assets/images/landingPage.jpeg)
+* A city is entered by the user into the search bar and when go is clicked or enter is pressed a map, the weather, and a list of breweries will appear:
 
 ![Displays weather, map of city center, and breweries](./assets/images/dataDisplay.jpeg)
 ## Installation
-
+Made using the latest versions of GItHub, Visual Studio Code, and Tailwind. To recreate please do not use same weather API Key. To request API key for your own personal use visit: https://home.openweathermap.org/
 ## Support
 
 For support the best form of contact will be by email at jkrieger11@gmail.com .
 
 ## Roadmap
 No specific order: 
+* Have map show locations of breweries
+* Based off weather description, show breweries with accommodating features (examples: weather is sunny would show breweries with outdoor patios; weather is rainy would show breweries that have more indoor features)
+* Animate background of landing page
 
-Have map show locations of breweries
-
-Based off weather description, show breweries with accommodating features (examples: weather is sunny would show breweries with outdoor patios; weather is rainy would show breweries that have more indoor features)
-
-Animate background of landing page
-
- 
-
-## Contributing
-
-Open to contributions, please send ideas and suggestions in email format with screenshots to jkrieger11@gmail.com.
 
 ## Authors and acknowledgment
-Mike Novachek
-[GitHub](https://github.com/BigMikeNova?tab=repositories "GitHub Repos")
+* Mike Novachek
+ *[GitHub](https://github.com/BigMikeNova?tab=repositories "GitHub Repos")
+* Jacob Andrew
+*[GitHub](https://github.com/jcandrew1219?tab=repositories "GitHub Repos")
+* Dorian Walker
+*[GitHub](https://GitHub.com/dorianwalker29?tab=repositories "GitHub Repos")
+* Jake Krieger
+*[GitHub](https://github.com/jkrieger6?tab=repositories "GitHub Repos")
 
-Jacob Andrew
-[GitHub](https://github.com/jcandrew1219?tab=repositories "GitHub Repos")
-
-Dorian Walker
-[GitHub](https://GitHub.com/dorianwalker29?tab=repositories "GitHub Repos")
-
-Jake Krieger
-[GitHub](https://github.com/jkrieger6?tab=repositories "GitHub Repos")
 ## Usage
 Type in a city within the US to get the current weather and future weather to display, a map of the city center to display as well as a list of breweries. When the go button is pressed the weather with the forecast will be displayed on the left side of the page, the list of breweries will appear on the right side of the page, and a map of the city center will appear in the center of the page.
 
