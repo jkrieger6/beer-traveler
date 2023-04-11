@@ -20,8 +20,12 @@ function addResult(event) {
   let userInputEl = document.querySelector("#searchCriteria");
   var cityInput = userInputEl.value;
   console.log(cityInput);
-
-  // $("#current-weather").attr("style", "display:inline-block");
+  var myCityEl = document.querySelector("#myCity");
+  myCityEl.classList.remove("hidden-control");
+  var weatherPaneEl = document.querySelector("#weatherPane");
+  weatherPaneEl.classList.remove("hidden-control");
+  var beerGlassEl = document.querySelector("#beerGlass");
+  beerGlassEl.classList.remove("hidden-control");
   console.log(cityInput);
   searchCity(cityInput);
 }
